@@ -1,8 +1,9 @@
+import { type } from "os";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { TableData } from "../types/TableData";
 
-interface overviewProps {
+export type overviewProps = {
   buttonName: string;
   tableData: TableData[];
   goBack: boolean;
