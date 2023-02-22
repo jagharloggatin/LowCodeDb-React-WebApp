@@ -18,14 +18,9 @@ export default function Overview(props: overviewProps) {
 
   const [showModal, setShowModal] = useState(false);
 
-  //useEffect here
-  useEffect( () => {
-    console.log('render');
-    console.log(showModal);
-  }, [showModal])
-
    const clickHandler = () => {
     setShowModal(true);
+    console.log(showModal)
     console.log('showing modal?')
    };
 
@@ -50,35 +45,7 @@ export default function Overview(props: overviewProps) {
           })}
           </tbody>
         </Table>
-        <div>
-
-              <Modal show={showModal}>
-                <Modal.Header>
-                    <Modal.Title>
-                        Create {buttonName}
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                 <table>
-                     <tr>
-                        <td>{buttonName}:</td>
-                        <td>
-                            <input type="text"/>
-                        </td>
-                    </tr>
-                </table>
-                </Modal.Body>
-                <Modal.Footer>
-                     <Button onClick={()=>setShowModal(false)}>
-                        Cancel
-                    </Button>
-
-                    <Button>
-                         Create
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
+        <ModalComponent showModal={showModal} setShowModal={(showModal) => setShowModal(showModal)} nameTag={buttonName}/>
       </div>
     );
   }
@@ -100,34 +67,7 @@ export default function Overview(props: overviewProps) {
         })}
         </tbody>
       </Table>
-        <div>
-            <Modal show={showModal}>
-                <Modal.Header>
-                    <Modal.Title>
-                        Create {buttonName}
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                 <table>
-                     <tr>
-                        <td>{buttonName}:</td>
-                        <td>
-                            <input type="text"/>
-                        </td>
-                    </tr>
-                </table>
-                </Modal.Body>
-                <Modal.Footer>
-                     <Button onClick={()=>setShowModal(false)}>
-                        Cancel
-                    </Button>
-
-                    <Button>
-                         Create
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
+      <ModalComponent showModal={showModal} setShowModal={(showModal) => setShowModal(showModal)} nameTag={buttonName}/>
     </div>
   );
 }

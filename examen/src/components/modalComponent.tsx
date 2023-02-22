@@ -5,17 +5,18 @@ import {useState} from 'react';
 
 export type modalProps = {
     nameTag: string;
-    showModal: boolean
+    showModal: boolean;
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function ModalComponent(props: modalProps){
-    const { nameTag, showModal } = props;
+    const { nameTag, showModal, setShowModal } = props;
 
-    const [show, setShow] = useState(showModal);
+    //const [show, setShow] = useState(showModal);
 
     return (
         <div>
-            <Modal show={show}>
+            <Modal show={showModal}>
                 <Modal.Header>
                     <Modal.Title>
                         Create {nameTag}
@@ -32,7 +33,7 @@ export default function ModalComponent(props: modalProps){
                 </table>
                 </Modal.Body>
                 <Modal.Footer>
-                     <Button onClick={()=>setShow(false)}>
+                     <Button onClick={()=>setShowModal(false)}>
                         Cancel
                     </Button>
 
