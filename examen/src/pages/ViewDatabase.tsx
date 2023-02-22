@@ -1,7 +1,7 @@
 import Overview, { overviewProps } from "../components/overview";
 
 const tableProps : overviewProps = {
-    buttonName: 'createDatabase',
+    buttonName: 'Database',
     tableData: [{name : 'test'},{name: 'test1'}],
     goBack: false  
 };

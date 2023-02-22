@@ -7,30 +7,33 @@ export type columnProps = {
     tableName: string;
 }
 
-export default function tableComponent(props: columnProps){
+export default function ColumnComponent(props: columnProps){
     const {columns, tableName} = props;
 
     //useEffect here
 
     return (
         <div>
+            <h1>{tableName}</h1>
             <Button className="backButton">Back</Button>
             <Button className="createButton">Create column</Button>
+            <Button className="backToMain">Back to main</Button>
             <Table striped bordered hover>
+                <tbody>
+
                 <tr>
                     {columns.map((data) => {
                         return (
-                            <th>
+                            <thead>
                                 {data.columnName}
-                            </th>
+                            </thead>
                         );
                     })}
                 </tr>
+                    </tbody>
             </Table>
         </div>
        
     )
-
-
 }
 
