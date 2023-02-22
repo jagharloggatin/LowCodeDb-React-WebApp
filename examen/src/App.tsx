@@ -1,12 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import { ViewDatabaseRoute } from './Routes/ViewDatabaseRoute';
 
 function App() {
   return (
-    <div>
-      routes here!
-    </div>
+    <Routes>
+      <Route path="/" element={<ViewDatabaseRoute/>}></Route>
+    </Routes>
   );
 }
 
