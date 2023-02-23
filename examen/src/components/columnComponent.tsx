@@ -8,7 +8,7 @@ export type columnProps = {
     tableName: string;
 }
 
-export default function columnComponent(props: columnProps){
+export default function ColumnComponent(props: columnProps){
     const {columns, tableName} = props;
 
     //useEffect here

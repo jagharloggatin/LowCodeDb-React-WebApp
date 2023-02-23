@@ -4,16 +4,15 @@ import {useState} from 'react';
 import { TableData } from "../types/TableData";
 
 
-export type modalProps = {
-    nameTag: string;
+export type modalColumnProps = {
     showModal: boolean
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-    addRows: React.Dispatch<React.SetStateAction<TableData[]>>;
-    rows: TableData[];
+    // addRows: React.Dispatch<React.SetStateAction<TableData[]>>;
+    // rows: TableData[];
 }
 
-export default function ModalColumnComponent(showModal: boolean){
-    //const { nameTag, showModal, setShowModal, addRows: setContent, rows } = props;
+export default function ModalColumnComponent(props : modalColumnProps){
+    const { showModal, setShowModal } = props;
     const [message, setMessage] = useState('');
       const handleChange = (event:any) => {
             setMessage(event.target.value);
@@ -50,7 +49,7 @@ export default function ModalColumnComponent(showModal: boolean){
                 </table>
                 </Modal.Body>
                 <Modal.Footer>
-                     <Button>
+                     <Button onClick = {()=>{setShowModal(false)}}>
                         Cancel
                     </Button>
 
