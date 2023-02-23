@@ -1,13 +1,14 @@
 import Button from "react-bootstrap/esm/Button";
 import Table from "react-bootstrap/esm/Table";
 import { Columns } from "../types/Columns";
+import { Link } from 'react-router-dom';
 
 export type columnProps = {
     columns: Columns[];
     tableName: string;
 }
 
-export default function ColumnComponent(props: columnProps){
+export default function columnComponent(props: columnProps){
     const {columns, tableName} = props;
 
     //useEffect here
@@ -15,22 +16,25 @@ export default function ColumnComponent(props: columnProps){
     return (
         <div>
             <h1>{tableName}</h1>
-            <Button className="backButton">Back</Button>
+            <Link to="/tables">
+                <Button className="backButton">Back</Button>
+            </Link>
             <Button className="createButton">Create column</Button>
-            <Button className="backToMain">Back to main</Button>
+            <Link to="/">
+                 <Button className="backToMain">Back to main</Button>
+            </Link>
             <Table striped bordered hover>
                 <tbody>
-
-                <tr>
-                    {columns.map((data) => {
-                        return (
-                            <thead>
-                                {data.columnName}
-                            </thead>
-                        );
-                    })}
-                </tr>
-                    </tbody>
+                    <tr>
+                        {columns.map((data) => {
+                            return (
+                                <th>
+                                    {data.columnName}
+                                </th>
+                            );
+                        })}
+                    </tr>
+                </tbody>
             </Table>
         </div>
        

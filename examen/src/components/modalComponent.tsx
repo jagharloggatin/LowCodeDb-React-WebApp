@@ -1,21 +1,26 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {useState} from 'react';
+import { TableData } from "../types/TableData";
 
 
 export type modalProps = {
     nameTag: string;
     showModal: boolean
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    addRows: React.Dispatch<React.SetStateAction<TableData[]>>;
+    rows: TableData[];
 }
 
 export default function ModalComponent(props: modalProps){
-    const { nameTag, showModal } = props;
-
-    const [show, setShow] = useState(showModal);
-
+    const { nameTag, showModal, setShowModal, addRows: setContent, rows } = props;
+    const [message, setMessage] = useState('');
+      const handleChange = (event:any) => {
+            setMessage(event.target.value);
+        };
     return (
         <div>
-            <Modal show={show}>
+            <Modal show={showModal}>
                 <Modal.Header>
                     <Modal.Title>
                         Create {nameTag}
@@ -23,20 +28,27 @@ export default function ModalComponent(props: modalProps){
                 </Modal.Header>
                 <Modal.Body>
                  <table>
-                     <tr>
-                        <td>{nameTag}:</td>
-                        <td>
-                            <input type="text"/>
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>{nameTag}:</td>
+                            <td>
+                                 <input type="text"
+                                        onChange={handleChange}/>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 </Modal.Body>
                 <Modal.Footer>
-                     <Button onClick={()=>setShow(false)}>
+                     <Button onClick={()=>setShowModal(false)}>
                         Cancel
                     </Button>
 
-                    <Button>
+                    <Button onClick={() => {
+                        rows.push({name: message})
+                        setContent([...rows])
+                        setShowModal(false);
+                        }}>
                          Create
                     </Button>
                 </Modal.Footer>
