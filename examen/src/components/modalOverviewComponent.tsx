@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import {useState} from 'react';
 import { TableData } from "../types/TableData";
 import { Columns } from "../types/Columns";
+import {FloatingLabel, Form} from 'react-bootstrap'
 
 
 export type modalProps = {
@@ -28,30 +29,26 @@ export default function ModalComponent(props: modalProps){
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                 <table>
-                    <tbody>
-                        <tr>
-                            <td>{nameTag}:</td>
-                            <td>
-                                 <input type="text"
-                                        onChange={handleChange}/>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                </Modal.Body>
-                <Modal.Footer>
-                     <Button onClick={()=>setShowModal(false)}>
-                        Cancel
-                    </Button>
-
-                    <Button onClick={() => {
+                 <Form>
+                    <FloatingLabel controlId="floatingInput" label={nameTag + ' name'} className="mb-3">
+                        <Form.Control placeholder={nameTag + ' name'} type="text"/>
+                    </FloatingLabel>
+                     <Button type="submit" variant="success" onClick={() => {
                         rows.push({name: message} as TableData)
                         setContent([...rows] as TableData[])
                         setShowModal(false);
                         }}>
                          Create
                     </Button>
+                    <Button variant="danger" onClick={()=>setShowModal(false)}>
+                        Cancel
+                    </Button>
+                 </Form>
+                </Modal.Body>
+                <Modal.Footer>
+ 
+
+
                 </Modal.Footer>
             </Modal>
         </div>

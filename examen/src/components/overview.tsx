@@ -5,6 +5,8 @@ import { TableData } from "../types/TableData";
 import ModalComponent from "./modalOverviewComponent";
 import {useState, useEffect} from 'react';
 import Modal from "react-bootstrap/Modal";
+import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 
 
@@ -28,8 +30,12 @@ export default function Overview(props: overviewProps) {
 
   if (goBack) {
     return (
-      <div>
-        <Button className="backButton">Back</Button>
+      <Card>
+        <Card.Body>
+
+        <Link to="/">
+           <Button className="backButton">Back</Button>
+        </Link>
 
       <Button onClick={clickHandler}>Create {buttonName}</Button>
 
@@ -53,7 +59,8 @@ export default function Overview(props: overviewProps) {
 
                         rows={rows}
                         addRows={(rows) => addRows(rows)} />
-      </div>
+        </Card.Body>
+      </Card>
     );
   }
 

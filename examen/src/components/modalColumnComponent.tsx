@@ -29,10 +29,10 @@ export default function ModalColumnComponent(props : modalColumnProps){
                 <Modal.Body>
                     <Form>
                         <FloatingLabel controlId="floatingInput" label = "Name" className="mb-3">
-                            <Form.Control type = "text"/>
+                            <Form.Control placeholder="Name" type = "text"/>
                         </FloatingLabel>
                         <FloatingLabel controlId="floatingInput" label = "Datatype" className="mb-3">
-                            <Form.Control type = "text"/>
+                            <Form.Control placeholder="Datatype" type = "text"/>
                         </FloatingLabel>
                         <Form.Group className="mb-3">
                             <Form.Check type = "checkbox">
@@ -46,14 +46,11 @@ export default function ModalColumnComponent(props : modalColumnProps){
                         <Button type="submit" variant="success">
                             Create
                         </Button>
+                        <Button onClick = {()=>{setShowModal(false)}} variant="danger">
+                          Cancel
+                        </Button>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                     <Button onClick = {()=>{setShowModal(false)}} variant="danger">
-                        Cancel
-                    </Button>
-
-                </Modal.Footer>
             </Modal>
         </div>
     )
