@@ -1,5 +1,6 @@
-.backButton{
-    float:right
+.backButton, .backToMain{
+    float:right;
+    margin-left: 1rem;
 }
 
 .tableDataButton{
