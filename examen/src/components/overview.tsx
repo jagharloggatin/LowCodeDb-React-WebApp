@@ -7,6 +7,7 @@ import {useState, useEffect} from 'react';
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import "../styles/overView.css"
 
 
 
@@ -30,22 +31,24 @@ export default function Overview(props: overviewProps) {
 
   if (goBack) {
     return (
-      <Card>
-        <Card.Body>
-
-        <Link to="/">
-           <Button className="backButton">Back</Button>
+      <Card style={{width : "50%", margin : "auto"}}>
+        <Card.Header>
+          <Button variant = "success" onClick={clickHandler}>Create {buttonName}</Button>
+           <Link to="/">
+           <Button variant = "danger" className="backButton">Back</Button>
         </Link>
 
-      <Button onClick={clickHandler}>Create {buttonName}</Button>
+      
 
+        </Card.Header>
+        <Card.Body>
         <Table striped bordered hover>
           <tbody>
 
           {rows.map((data) => {
             return (
               <tr>
-                <td>
+                <td style={{justifyContent : "center", width : "100%"}}>
                   <Button className="tableDataButton">{data.name}</Button>
                 </td>
               </tr>
@@ -65,8 +68,11 @@ export default function Overview(props: overviewProps) {
   }
 
   return (
-    <div>
-      <Button onClick={clickHandler}>Create {buttonName}</Button>
+    <Card style={{width : "50%", margin : "auto"}}>
+      <Card.Header>
+          <Button variant = "success" onClick={clickHandler}>Create {buttonName}</Button>
+      </Card.Header>
+      <Card.Body>    
       <Table striped bordered hover>
         <tbody>
 
@@ -86,6 +92,7 @@ export default function Overview(props: overviewProps) {
                         nameTag={buttonName} 
                         rows={rows}
                         addRows={(rows) => addRows(rows)} />
-    </div>
+        </Card.Body>
+    </Card>
   );
 }

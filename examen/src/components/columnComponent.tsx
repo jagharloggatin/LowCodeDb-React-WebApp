@@ -4,6 +4,7 @@ import { Columns } from "../types/Columns";
 import { Link } from 'react-router-dom';
 import ModalColumnComponent from "./modalColumnComponent";
 import { useState } from "react";
+import { Card } from "react-bootstrap";
 
 export type columnProps = {
     columns: Columns[];
@@ -19,7 +20,7 @@ export default function ColumnComponent(props: columnProps){
     //useEffect here
 
     return (
-        <div>
+        <Card>
             <h1>{tableName}</h1>
             <Link to="/tables">
                 <Button className="backButton">Back</Button>
@@ -48,7 +49,7 @@ export default function ColumnComponent(props: columnProps){
             addColumn={(newColumns) => addColumns(newColumns)}
         />
 
-        </div>
+        </Card>
        
     )
 }

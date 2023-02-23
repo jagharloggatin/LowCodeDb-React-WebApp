@@ -1,0 +1,15 @@
+.backButton{
+    float:right
+}
+
+.tableDataButton{
+    justify-content: center;
+}
+
+td{
+    text-align: center;
+}
+
+body{
+    padding: 30px;
+}
