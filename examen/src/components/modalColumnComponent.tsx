@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {useState} from 'react';
 import { TableData } from "../types/TableData";
+import { FloatingLabel, Form } from "react-bootstrap";
 
 
 export type modalColumnProps = {
@@ -26,40 +27,32 @@ export default function ModalColumnComponent(props : modalColumnProps){
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                 <table>
-                    <tbody>
-                        <tr>
-                            <td>Name:</td>
-                            <td>
-                                 <input type="text"
-                                        onChange={handleChange}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Datatype:</td>
-                            <td>
-                                 <input type="text"
-                                        onChange={handleChange}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Primary Key:</td>
-                            <td>
-                                 <input type="checkbox"
-                                        onChange={handleChange}/>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <Form>
+                        <FloatingLabel controlId="floatingInput" label = "Name" className="mb-3">
+                            <Form.Control type = "text"/>
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingInput" label = "Datatype" className="mb-3">
+                            <Form.Control type = "text"/>
+                        </FloatingLabel>
+                        <Form.Group className="mb-3">
+                            <Form.Check type = "checkbox">
+                                <Form.Check.Input type= "checkbox"/>
+                             <Form.Check.Label>
+                                PrimaryKey
+                            </Form.Check.Label>
+                            </Form.Check>
+                        </Form.Group>
+
+                        <Button type="submit" variant="success">
+                            Create
+                        </Button>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                     <Button onClick = {()=>{setShowModal(false)}}>
+                     <Button onClick = {()=>{setShowModal(false)}} variant="danger">
                         Cancel
                     </Button>
 
-                    <Button>
-                         Create
-                    </Button>
                 </Modal.Footer>
             </Modal>
         </div>
