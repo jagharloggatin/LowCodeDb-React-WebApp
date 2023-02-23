@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {useState} from 'react';
 import { TableData } from "../types/TableData";
+import { Columns } from "../types/Columns";
 
 
 export type modalProps = {
@@ -45,8 +46,8 @@ export default function ModalComponent(props: modalProps){
                     </Button>
 
                     <Button onClick={() => {
-                        rows.push({name: message})
-                        setContent([...rows])
+                        rows.push({name: message} as TableData)
+                        setContent([...rows] as TableData[])
                         setShowModal(false);
                         }}>
                          Create

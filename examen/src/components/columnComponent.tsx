@@ -2,6 +2,8 @@ import Button from "react-bootstrap/esm/Button";
 import Table from "react-bootstrap/esm/Table";
 import { Columns } from "../types/Columns";
 import { Link } from 'react-router-dom';
+import ModalColumnComponent from "./modalColumnComponent";
+import { useState } from "react";
 
 export type columnProps = {
     columns: Columns[];
@@ -10,6 +12,8 @@ export type columnProps = {
 
 export default function ColumnComponent(props: columnProps){
     const {columns, tableName} = props;
+    const [showModal, setShowModal] = useState(false)
+    const clickHandler = ()=>{setShowModal(true); console.log(showModal)}
 
     //useEffect here
 
@@ -19,7 +23,7 @@ export default function ColumnComponent(props: columnProps){
             <Link to="/tables">
                 <Button className="backButton">Back</Button>
             </Link>
-            <Button className="createButton">Create column</Button>
+            <Button className="createButton" onClick={clickHandler}>Create column</Button>
             <Link to="/">
                  <Button className="backToMain">Back to main</Button>
             </Link>
@@ -36,6 +40,8 @@ export default function ColumnComponent(props: columnProps){
                     </tr>
                 </tbody>
             </Table>
+        <ModalColumnComponent showModal = {showModal} setShowModal= {(showModal) => setShowModal(showModal)}/>
+
         </div>
        
     )

@@ -34,11 +34,15 @@ export default function ModalColumnComponent(props : modalColumnProps){
                                  <input type="text"
                                         onChange={handleChange}/>
                             </td>
+                        </tr>
+                        <tr>
                             <td>Datatype:</td>
                             <td>
                                  <input type="text"
                                         onChange={handleChange}/>
                             </td>
+                        </tr>
+                        <tr>
                             <td>Primary Key:</td>
                             <td>
                                  <input type="checkbox"
