@@ -2,7 +2,7 @@ import { type } from "os";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { TableData } from "../types/TableData";
-import ModalComponent from "./modalComponent";
+import ModalComponent from "./modalOverviewComponent";
 import {useState, useEffect} from 'react';
 import Modal from "react-bootstrap/Modal";
 
