@@ -15,7 +15,7 @@ export type modalProps = {
 }
 
 export default function ModalComponent(props: modalProps){
-    const { nameTag, showModal, setShowModal, addRows: setContent, rows } = props;
+    const { nameTag, showModal, setShowModal, addRows, rows } = props;
     const [message, setMessage] = useState('');
       const handleChange = (event:any) => {
             setMessage(event.target.value);
@@ -35,7 +35,7 @@ export default function ModalComponent(props: modalProps){
                     </FloatingLabel>
                      <Button type="submit" variant="success" onClick={() => {
                         rows.push({name: message} as TableData)
-                        setContent([...rows] as TableData[])
+                        addRows([...rows] as TableData[])
                         setShowModal(false);
                         }}>
                          Create

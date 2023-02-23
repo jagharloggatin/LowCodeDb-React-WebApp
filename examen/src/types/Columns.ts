@@ -1,3 +1,9 @@
 export type Columns = {
-    columnName: string;
-}
+  columnName: string;
+};
+
+export type CreateColumnData = {
+  name: string;
+  datatype: string;
+  primaryKey: boolean;
+};

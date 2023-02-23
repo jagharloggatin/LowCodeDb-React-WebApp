@@ -13,6 +13,7 @@ export type columnProps = {
 export default function ColumnComponent(props: columnProps){
     const {columns, tableName} = props;
     const [showModal, setShowModal] = useState(false)
+    const [newColumns, addColumns] = useState([...columns]);
     const clickHandler = ()=>{setShowModal(true); console.log(showModal)}
 
     //useEffect here
@@ -40,7 +41,12 @@ export default function ColumnComponent(props: columnProps){
                     </tr>
                 </tbody>
             </Table>
-        <ModalColumnComponent showModal = {showModal} setShowModal= {(showModal) => setShowModal(showModal)}/>
+        <ModalColumnComponent 
+            showModal = {showModal} 
+            setShowModal= {(showModal) => setShowModal(showModal)} 
+            columns={newColumns} 
+            addColumn={(newColumns) => addColumns(newColumns)}
+        />
 
         </div>
        
