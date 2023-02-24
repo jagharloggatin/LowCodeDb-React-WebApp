@@ -18,9 +18,9 @@ export default function ModalColumnComponent(props : modalColumnProps){
     const [message, setMessage] = useState('');
     const { register, handleSubmit, formState: { errors }, reset } = useForm<CreateColumnData>();
 
-      const handleChange = (event:any) => {
-            setMessage(event.target.value);
-        };
+    const handleChange = (event:any) => {
+        setMessage(event.target.value);
+    };
 
     const onSubmit: SubmitHandler<CreateColumnData> = data => {
        console.log(data)
@@ -52,7 +52,6 @@ export default function ModalColumnComponent(props : modalColumnProps){
                             </Form.Check.Label>
                             </Form.Check>
                         </Form.Group>
-
                         <Button type="submit" variant="success">
                             Create
                         </Button>

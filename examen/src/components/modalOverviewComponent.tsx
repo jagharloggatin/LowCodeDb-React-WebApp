@@ -17,9 +17,11 @@ export type modalProps = {
 export default function ModalComponent(props: modalProps){
     const { nameTag, showModal, setShowModal, addRows, rows } = props;
     const [message, setMessage] = useState('');
-      const handleChange = (event:any) => {
-            setMessage(event.target.value);
-        };
+
+    const handleChange = (event:any) => {
+        setMessage(event.target.value);
+    };
+
     return (
         <div>
             <Modal show={showModal}>
@@ -45,11 +47,6 @@ export default function ModalComponent(props: modalProps){
                     </Button>
                  </Form>
                 </Modal.Body>
-                <Modal.Footer>
- 
-
-
-                </Modal.Footer>
             </Modal>
         </div>
     )
