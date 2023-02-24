@@ -29,6 +29,16 @@ app.get("/getConnection", (req, res) => {
       });
   });
 
+  app.get("/getDatabases", (req, res) => {
+    let showQuery = `SHOW DATABASES`;
+    const databases = connection.query(showQuery, (err) => {
+        if(err) console.log(err)
+    })
+
+    console.log(databases)
+    return res.send({databases: databases})
+  });
+
   app.post("/createDatabase", (req, res) => {
     console.log("body: "+ req.body.name);
     let createQuery = `CREATE DATABASE ${req.body.name}`;
