@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "../styles/overView.css"
+import { connection } from "../controllers/dbConnections";
 
 
 
@@ -27,6 +28,11 @@ export default function Overview(props: overviewProps) {
 
    const clickHandler = () => {
     setShowModal(true);
+    connection.connect(function(err:any) {
+      if (err) throw err;
+      console.log("Connected!");
+    });
+    ;
    };
 
   if (goBack) {
