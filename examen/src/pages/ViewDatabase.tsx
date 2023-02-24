@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
 import Overview, { overviewProps } from "../components/overview";
 import { createDatabases } from "../controllers/createDatabase";
 import { getDatabases } from "../controllers/getDatabases";
+import { DatabaseObject } from "../types/DatabaseObject";
+import { TableData } from "../types/TableData";
 
 const tableProps : overviewProps = {
     buttonName: 'Database',
@@ -11,13 +14,19 @@ const tableProps : overviewProps = {
 };
 
 export default function ViewDatabase(){
+    const [tableDataTest, setTableDataTest] = useState<TableData[]>([]);
 
+    useEffect(()=> {
+        getDatabases()
+        .then((data) =>{
+            if(data) setTableDataTest(data)
+        })
+    },[])
     //Jonathan fixa det
-    const databases = getDatabases().then();
-
+    console.log(tableDataTest)
     return <Overview 
         buttonName={tableProps.buttonName} 
-        tableData={tableProps.tableData} 
+        tableData={tableDataTest} 
         goBack ={tableProps.goBack} 
         getDataHandler={tableProps.getDataHandler} 
         createDataHandler={tableProps.createDataHandler}

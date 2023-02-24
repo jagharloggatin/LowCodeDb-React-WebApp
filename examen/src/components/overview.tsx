@@ -22,6 +22,10 @@ export default function Overview(props: overviewProps) {
   const [rows, addRows] = useState([...tableData]);
 
   //useEffect here
+  useEffect(() => {
+    console.log("render")
+    if(tableData) addRows([...tableData])
+  }, [tableData])
 
    const clickHandler = async() => {
     await makeConnection()
@@ -42,6 +46,7 @@ export default function Overview(props: overviewProps) {
           <tbody>
 
           {rows.map((data) => {
+            
             return (
               <tr>
                 <td style={{justifyContent : "center", width : "100%"}}>

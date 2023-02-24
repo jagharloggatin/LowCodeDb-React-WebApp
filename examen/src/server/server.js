@@ -31,12 +31,10 @@ app.get("/getConnection", (req, res) => {
 
   app.get("/getDatabases", (req, res) => {
     let showQuery = `SHOW DATABASES`;
-    const databases = connection.query(showQuery, (err) => {
+    connection.query(showQuery, (err, result, fields) => {
         if(err) console.log(err)
+        return res.send(JSON.stringify(result))
     })
-
-    console.log(databases)
-    return res.send({databases: databases})
   });
 
   app.post("/createDatabase", (req, res) => {
