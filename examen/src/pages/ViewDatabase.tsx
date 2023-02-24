@@ -1,5 +1,6 @@
 import Overview, { overviewProps } from "../components/overview";
 import { createDatabases } from "../controllers/createDatabase";
+import { getDatabases } from "../controllers/getDatabases";
 
 const tableProps : overviewProps = {
     buttonName: 'Database',
@@ -10,6 +11,10 @@ const tableProps : overviewProps = {
 };
 
 export default function ViewDatabase(){
+
+    //Jonathan fixa det
+    const databases = getDatabases().then();
+
     return <Overview 
         buttonName={tableProps.buttonName} 
         tableData={tableProps.tableData} 
