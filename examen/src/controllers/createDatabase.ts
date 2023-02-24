@@ -1,10 +1,12 @@
 export async function createDatabases(databaseName: string) {
+  const body = { name: databaseName };
+
   const response = await fetch("http://localhost:3001/createDatabase", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: databaseName,
+    body: JSON.stringify(body),
   });
 
   if (response.ok) {
