@@ -1,16 +1,12 @@
-import { type } from "os";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { TableData } from "../types/TableData";
 import ModalComponent from "./modalOverviewComponent";
 import {useState, useEffect} from 'react';
-import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "../styles/overView.css"
-import { connection } from "../controllers/dbConnections";
-
-
+import {getDatabases} from "../controllers/getDatabases";
 
 export type overviewProps = {
   buttonName: string;
@@ -20,19 +16,14 @@ export type overviewProps = {
 
 export default function Overview(props: overviewProps) {
   const { buttonName, tableData, goBack } = props;
-
   const [showModal, setShowModal] = useState(false);
   const [rows, addRows] = useState([...tableData]);
 
   //useEffect here
 
-   const clickHandler = () => {
+   const clickHandler = async() => {
+    await getDatabases()
     setShowModal(true);
-    connection.connect(function(err:any) {
-      if (err) throw err;
-      console.log("Connected!");
-    });
-    ;
    };
 
   if (goBack) {
@@ -43,9 +34,6 @@ export default function Overview(props: overviewProps) {
            <Link to="/">
            <Button variant = "danger" className="backButton">Back</Button>
         </Link>
-
-      
-
         </Card.Header>
         <Card.Body>
         <Table striped bordered hover>
