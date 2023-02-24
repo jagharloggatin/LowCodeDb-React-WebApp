@@ -25,9 +25,7 @@ app.listen(port, () => {
 app.get("/getConnection", (req, res) => {
     connection.connect(function(err) {
         if (err) console.log(err);
-        console.log("before connection")
         res.send({message: "Connected!"});
-        console.log("after connection")
       });
   });
 
@@ -48,7 +46,7 @@ app.get("/getConnection", (req, res) => {
             console.log("Using Database");
 
             return res.send(
-                `Created and Using ${req.body.name} Database`);
+                {message: `Created and Using ${req.body.name} Database`});
         })
     });
 });

@@ -1,4 +1,4 @@
-export async function getDatabases() {
+export async function makeConnection() {
   const response = await fetch("http://localhost:3001/getConnection", {
     method: "GET",
     headers: {

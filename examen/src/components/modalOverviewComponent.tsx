@@ -15,17 +15,19 @@ export type modalProps = {
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
     addRows: React.Dispatch<React.SetStateAction<TableData[]>>;
     rows: TableData[];
+    getDataHandler: Function;
+    createDataHandler: Function;
 }
 
 export default function ModalComponent(props: modalProps){
-    const { nameTag, showModal, setShowModal, addRows, rows } = props;
+    const { nameTag, showModal, setShowModal, addRows, rows, getDataHandler, createDataHandler } = props;
     const [message, setMessage] = useState('');
     const { register, handleSubmit, formState: { errors }, reset } = useForm<NameData>();
 
     const onSubmit: SubmitHandler<NameData> = async(data) => {
         console.log(data.name)
         if(data.name.length>0){
-            await createDatabases(data.name) 
+            await createDataHandler(data.name) 
         }else{
             alert("Your database name needs at least one character!")
         }

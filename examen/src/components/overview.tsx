@@ -6,23 +6,25 @@ import {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "../styles/overView.css"
-import {getDatabases} from "../controllers/getDatabases";
+import {makeConnection} from "../controllers/makeConnection";
 
 export type overviewProps = {
   buttonName: string;
   tableData: TableData[];
   goBack?: boolean;
+  getDataHandler: Function;
+  createDataHandler: Function;
 }
 
 export default function Overview(props: overviewProps) {
-  const { buttonName, tableData, goBack } = props;
+  const { buttonName, tableData, goBack , getDataHandler, createDataHandler} = props;
   const [showModal, setShowModal] = useState(false);
   const [rows, addRows] = useState([...tableData]);
 
   //useEffect here
 
    const clickHandler = async() => {
-    await getDatabases()
+    await makeConnection()
     setShowModal(true);
    };
 
@@ -53,7 +55,8 @@ export default function Overview(props: overviewProps) {
         <ModalComponent showModal={showModal} 
                         setShowModal={(showModal) => setShowModal(showModal)} 
                         nameTag={buttonName}
-
+                        createDataHandler={createDataHandler}
+                        getDataHandler={getDataHandler}
                         rows={rows}
                         addRows={(rows) => addRows(rows)} />
         </Card.Body>
@@ -85,6 +88,8 @@ export default function Overview(props: overviewProps) {
                         setShowModal={(showModal) => setShowModal(showModal)} 
                         nameTag={buttonName} 
                         rows={rows}
+                        createDataHandler={createDataHandler}
+                        getDataHandler={getDataHandler}
                         addRows={(rows) => addRows(rows)} />
         </Card.Body>
     </Card>
