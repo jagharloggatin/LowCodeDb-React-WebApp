@@ -42,7 +42,6 @@ export default function Overview(props: overviewProps) {
    const openColumnView = (database: string, table: string) => {
       console.log(database, table)
       navigate(`/columns/${database}/${table}`)
-
    }
 
   if (goBack) {
