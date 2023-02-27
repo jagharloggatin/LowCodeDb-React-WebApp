@@ -26,6 +26,7 @@ export default function ModalColumnComponent(props : modalColumnProps){
        console.log(data)
        columns.push({columnName: data.name})
        addColumn([...columns])
+       
     };
 
     return (

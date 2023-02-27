@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/esm/Button";
 import Table from "react-bootstrap/esm/Table";
 import { Columns } from "../types/Columns";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ModalColumnComponent from "./modalColumnComponent";
 import { useState } from "react";
 import { Card } from "react-bootstrap";
@@ -9,10 +9,11 @@ import { Card } from "react-bootstrap";
 export type columnProps = {
   columns: Columns[];
   tableName: string;
+  databaseName: string;
 };
 
 export default function ColumnComponent(props: columnProps) {
-  const { columns, tableName } = props;
+  const { columns, tableName, databaseName } = props;
   const [showModal, setShowModal] = useState(false);
   const [newColumns, addColumns] = useState([...columns]);
   const clickHandler = () => {
@@ -21,12 +22,13 @@ export default function ColumnComponent(props: columnProps) {
   };
 
   //useEffect here
-
+  //fix for back button because routes dont work without parameters
+  
   return (
     <Card style = {{width: '70%', margin: 'auto'}}>
       <Card.Header>
         <h1 style = {{margin: 'auto'}}>{tableName}</h1>
-        <Link to="/tables">
+        <Link to={"/tables/" + databaseName}>
           <Button variant = 'danger' className="backButton">Back</Button>
         </Link>
         <Button variant = 'success' className="createButton" onClick={clickHandler}>

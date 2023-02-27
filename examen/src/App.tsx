@@ -9,8 +9,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<ViewDatabaseRoute/>}></Route>
-      <Route path="/tables" element={<ViewTablesRoute/>}></Route>
-      <Route path="/columns" element={<ViewColumnsRoute/>}></Route>
+      <Route path="/tables/:databaseName" element={<ViewTablesRoute/>}></Route>
+      <Route path="/columns/:databaseName/:tableName" element={<ViewColumnsRoute/>}></Route>
     </Routes>
   );
 }
