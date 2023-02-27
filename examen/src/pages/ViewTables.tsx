@@ -1,10 +1,26 @@
 import OverView from '../components/overview'
+import { useState, useEffect } from 'react'
+import { TableData } from '../types/TableData';
+import { getTables } from '../controllers/getTables';
+import { useParams } from "react-router-dom";
+
 
 export default function ViewTables(){
+    const params = useParams();
+    const [tableDataTest, setTableDataTest] = useState<TableData[]>([]);
+
+
+    useEffect(()=> {
+        getTables(params.databaseName as string)
+        .then((data) =>{
+            if(data) setTableDataTest(data)
+        })
+    },[])
+
     return <OverView 
         buttonName={'Table'} 
         goBack={true} 
-        tableData={[{name: 'table1'}, {name: 'table2'}]} 
+        tableData={tableDataTest} 
         createDataHandler={()=>{console.log("HALLOY")}}
     />
 }
