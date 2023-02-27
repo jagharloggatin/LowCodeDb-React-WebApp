@@ -12,12 +12,11 @@ export type overviewProps = {
   buttonName: string;
   tableData: TableData[];
   goBack?: boolean;
-  getDataHandler: Function;
   createDataHandler: Function;
 }
 
 export default function Overview(props: overviewProps) {
-  const { buttonName, tableData, goBack , getDataHandler, createDataHandler} = props;
+  const { buttonName, tableData, goBack, createDataHandler} = props;
   const [showModal, setShowModal] = useState(false);
   const [rows, addRows] = useState([...tableData]);
 
@@ -61,7 +60,6 @@ export default function Overview(props: overviewProps) {
                         setShowModal={(showModal) => setShowModal(showModal)} 
                         nameTag={buttonName}
                         createDataHandler={createDataHandler}
-                        getDataHandler={getDataHandler}
                         rows={rows}
                         addRows={(rows) => addRows(rows)} />
         </Card.Body>
@@ -94,7 +92,6 @@ export default function Overview(props: overviewProps) {
                         nameTag={buttonName} 
                         rows={rows}
                         createDataHandler={createDataHandler}
-                        getDataHandler={getDataHandler}
                         addRows={(rows) => addRows(rows)} />
         </Card.Body>
     </Card>

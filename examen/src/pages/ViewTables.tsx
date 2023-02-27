@@ -5,7 +5,6 @@ export default function ViewTables(){
         buttonName={'Table'} 
         goBack={true} 
         tableData={[{name: 'table1'}, {name: 'table2'}]} 
-        getDataHandler={()=>{}}
         createDataHandler={()=>{console.log("HALLOY")}}
     />
 }

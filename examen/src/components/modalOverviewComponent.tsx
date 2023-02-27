@@ -15,27 +15,24 @@ export type modalProps = {
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
     addRows: React.Dispatch<React.SetStateAction<TableData[]>>;
     rows: TableData[];
-    getDataHandler: Function;
     createDataHandler: Function;
 }
 
 export default function ModalComponent(props: modalProps){
-    const { nameTag, showModal, setShowModal, addRows, rows, getDataHandler, createDataHandler } = props;
-    const [message, setMessage] = useState('');
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<NameData>();
+    const { nameTag, showModal, setShowModal, addRows, rows, createDataHandler } = props;
+    const { register, handleSubmit } = useForm<NameData>();
 
     const onSubmit: SubmitHandler<NameData> = async(data) => {
         console.log(data.name)
         if(data.name.length>0){
             await createDataHandler(data.name) 
+            addRows([{name: data.name},...rows] as TableData[])  
         }else{
             alert("Your database name needs at least one character!")
         }
+        setShowModal(false);
      };
-     
-      const handleChange = (event:any) => {
-            setMessage(event.target.value);
-        };
+
     return (
         <div>
             <Modal show={showModal}>
@@ -49,11 +46,7 @@ export default function ModalComponent(props: modalProps){
                     <FloatingLabel controlId="floatingInput" label={nameTag + ' name'} className="mb-3">
                         <Form.Control placeholder={nameTag + ' name'} type="text" {...register("name")}/>
                     </FloatingLabel>
-                     <Button type="submit" variant="success" onClick={async() => {
-                        rows.push({name: message} as TableData)
-                        addRows([...rows] as TableData[])
-                        setShowModal(false);
-                        }}>
+                     <Button type="submit" variant="success">
                          Create
                     </Button>
                     <Button variant="danger" onClick={()=>setShowModal(false)}>

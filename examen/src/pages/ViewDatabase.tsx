@@ -9,7 +9,6 @@ const tableProps : overviewProps = {
     buttonName: 'Database',
     tableData: [{name : 'test'},{name: 'test1'}],
     goBack: false,
-    getDataHandler: () => {},
     createDataHandler: createDatabases
 };
 
@@ -22,13 +21,12 @@ export default function ViewDatabase(){
             if(data) setTableDataTest(data)
         })
     },[])
-    //Jonathan fixa det
+
     console.log(tableDataTest)
     return <Overview 
         buttonName={tableProps.buttonName} 
         tableData={tableDataTest} 
-        goBack ={tableProps.goBack} 
-        getDataHandler={tableProps.getDataHandler} 
+        goBack ={tableProps.goBack}  
         createDataHandler={tableProps.createDataHandler}
         />
 }
