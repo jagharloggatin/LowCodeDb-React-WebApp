@@ -1,6 +1,7 @@
 export async function createDatabases(databaseName: string) {
-  const body = { name: databaseName };
+  const body = { name: databaseName};
 
+  //.trim().replace(' ', '_').replace(/(\s|-|_|~)+/g, '_').toLowerCase();
   const response = await fetch("http://localhost:3001/createDatabase", {
     method: "POST",
     headers: {

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { TableData } from '../types/TableData';
 import { getTables } from '../controllers/getTables';
 import { useParams } from "react-router-dom";
-
+import {createTable} from "../controllers/createTable";
 
 export default function ViewTables(){
     const params = useParams();
@@ -21,6 +21,6 @@ export default function ViewTables(){
         buttonName={'Table'} 
         goBack={true} 
         tableData={tableDataTest} 
-        createDataHandler={()=>{console.log("HALLOY")}}
+        createDataHandler={createTable}
     />
 }

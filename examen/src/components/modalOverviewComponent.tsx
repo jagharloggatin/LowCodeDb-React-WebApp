@@ -7,6 +7,7 @@ import {FloatingLabel, Form} from 'react-bootstrap'
 import { createDatabases } from "../controllers/createDatabase";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { NameData } from "../types/NameData";
+import {useParams} from "react-router-dom";
 
 
 export type modalProps = {
@@ -22,12 +23,16 @@ export default function ModalComponent(props: modalProps){
 
     const { nameTag, showModal, setShowModal, addRows, rows, createDataHandler } = props;
     const { register, handleSubmit } = useForm<NameData>();
+    const params = useParams();
 
     const onSubmit: SubmitHandler<NameData> = async(data) => {
         console.log(data.name)
+        console.log(params.databaseName)
+        const trimName: string = data.name.trim().replace(' ', '_').replace(/(\s|-|_|~)+/g, '_').toLowerCase();
+
         if(data.name.length>0){
-            await createDataHandler(data.name) 
-            addRows([{name: data.name},...rows] as TableData[])  
+            await createDataHandler(trimName, params.databaseName)
+            addRows([{name: trimName},...rows] as TableData[])
         }else{
             alert("Your database name needs at least one character!")
         }
