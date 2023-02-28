@@ -22,5 +22,6 @@ export default function ViewTables(){
         goBack={true} 
         tableData={tableDataTest} 
         createDataHandler={createTable}
+        getDataHandler={getTables}
     />
 }

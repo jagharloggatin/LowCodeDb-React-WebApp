@@ -16,10 +16,11 @@ export type modalProps = {
   addRows: React.Dispatch<React.SetStateAction<TableData[]>>;
   rows: TableData[];
   createDataHandler: Function;
+  getDataHandler: Function;
 };
 
 export default function ModalComponent(props: modalProps) {
-  const { nameTag, showModal, setShowModal, addRows, rows, createDataHandler } =
+  const { nameTag, showModal, setShowModal, addRows, rows, createDataHandler, getDataHandler } =
     props;
   const { register, handleSubmit } = useForm<NameData>();
   const params = useParams();
@@ -50,7 +51,9 @@ export default function ModalComponent(props: modalProps) {
 
     if (data.name.length > 0) {
       await createDataHandler(trimName, params.databaseName);
-      addRows([{ name: trimName }, ...rows] as TableData[]);
+      const fetchedData = await getDataHandler(params.databaseName as string)
+      addRows([...fetchedData] as TableData[]);
+      alert(`${data.name} added in list!`)
     }
     else {
       alert("Your database name needs at least one character!");
