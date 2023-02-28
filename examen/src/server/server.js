@@ -67,7 +67,7 @@ app.post("/createDatabase", (req, res) => {
 
 app.post("/createTable", (req, res) => {
     console.log("body: " + req.body.name);
-    let createQuery = `CREATE TABLE ${req.body.name}(id int unique, primary key(id));`;
+    let createQuery = `CREATE TABLE ${req.body.name}(id int unique);`;
     let useQuery = `USE ${req.body.databaseName}`;
 
     connection.query(useQuery, (error) => {
@@ -117,22 +117,41 @@ app.get("/getColumns/:databaseName/:tableName", (req, res) => {
 
 app.post("/createColumn", (req, res) => {
     console.log("body: " + req.body.tableName);
-    let createQuery = `ALTER TABLE ${req.body.tableName} ADD COLUMN ${req.body.columnName} ${req.body.datatype};`;
+    //Maybe do an if() case for req.body.columnData.primaryKey
+    
+    let createQuery = `ALTER TABLE ${req.body.tableName} ADD COLUMN ${req.body.columnData.name} ${req.body.columnData.datatype};`;
     let useQuery = `USE ${req.body.databaseName}`;
-
+    
     connection.query(useQuery, (error) => {
         if (error) {
             console.log(error)
         }
         console.log("Using Database");
-
+        
         connection.query(createQuery, (err) => {
-            if (err) {
-                console.log(err)
-            }
+            if (err) console.log(err)
+            })
 
-            return res.send(
-                {message: `Created column ${req.body.name} on Table ${req.body.tableName}`});
-        })
+            if(req.body.columnData.primaryKey){
+                const findPrimaryKey = `SHOW KEYS FROM ${req.body.tableName} WHERE Key_name = 'PRIMARY'`
+                connection.query(findPrimaryKey, (err, result, fields) => {
+                    if(err) {console.log(err)}
+                    console.log(findPrimaryKey)
+                    console.log("result: " + result)
+                    
+                    const dropPrimaryKey = `ALTER TABLE ${req.body.tableName} DROP CONSTRAINT PK_${result[0].Column_name}`
+                    connection.query(dropPrimaryKey, (err) => {
+                        if(err) console.log(err);
+                    })
+    
+                    const setPrimaryKey = `ALTER TABLE ${req.body.tableName} ADD PRIMARY KEY(${req.body.columnData.name})`
+                    connection.query(setPrimaryKey, (err) => {
+                        if(err) console.log(err)
+                    })
+                })
+
+            }
+        return res.send(
+        {message: `Created column ${req.body.columnData.name} on Table ${req.body.tableName}`});
     });
 });

@@ -3,7 +3,7 @@ import Table from "react-bootstrap/esm/Table";
 import { Columns } from "../types/Columns";
 import { Link, useParams } from "react-router-dom";
 import ModalColumnComponent from "./modalColumnComponent";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 
 export type columnProps = {
@@ -23,7 +23,10 @@ export default function ColumnComponent(props: columnProps) {
 
   //useEffect here
   //fix for back button because routes dont work without parameters
-  
+  useEffect(() => {
+    if(columns) addColumns([...columns])
+  }, [columns])
+
   return (
     <Card style = {{width: '70%', margin: 'auto'}}>
       <Card.Header>
@@ -42,7 +45,7 @@ export default function ColumnComponent(props: columnProps) {
         <Table striped bordered hover>
           <tbody>
             <tr>
-              {columns.map((data) => {
+              {newColumns.map((data) => {
                 return <th>{data.columnName}</th>;
               })}
             </tr>

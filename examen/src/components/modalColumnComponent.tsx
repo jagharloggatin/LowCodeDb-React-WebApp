@@ -4,6 +4,8 @@ import {useState} from 'react';
 import { Columns, CreateColumnData } from "../types/Columns";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FloatingLabel, Form } from "react-bootstrap";
+import {useParams} from "react-router-dom";
+import { createColumn } from "../controllers/createColumn";
 
 
 export type modalColumnProps = {
@@ -17,16 +19,17 @@ export default function ModalColumnComponent(props : modalColumnProps){
     const { showModal, setShowModal, addColumn, columns } = props;
     const [message, setMessage] = useState('');
     const { register, handleSubmit, formState: { errors }, reset } = useForm<CreateColumnData>();
+    const params = useParams()
 
     const handleChange = (event:any) => {
         setMessage(event.target.value);
     };
 
-    const onSubmit: SubmitHandler<CreateColumnData> = data => {
+    const onSubmit: SubmitHandler<CreateColumnData> = async (data) => {
        console.log(data)
-       columns.push({columnName: data.name})
-       addColumn([...columns])
-       
+        await createColumn(params.tableName as string, params.databaseName as string, data)
+       addColumn([{columnName: data.name}, ...columns])
+       setShowModal(false)
     };
 
     return (
