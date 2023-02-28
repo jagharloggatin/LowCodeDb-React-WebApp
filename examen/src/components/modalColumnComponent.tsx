@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { FloatingLabel, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { createColumn } from "../controllers/createColumn";
+import { getColumns } from "../controllers/getColumns";
 
 export type modalColumnProps = {
   showModal: boolean;
@@ -51,7 +52,9 @@ export default function ModalColumnComponent(props: modalColumnProps) {
       params.databaseName as string,
       data
     );
-    addColumn([{ columnName: data.name }, ...columns]);
+    const columnData: Columns[] = await getColumns(params.databaseName as string, params.tableName as string) as Columns[]
+
+    addColumn([...columnData]);
 
     setShowModal(false);
   };
