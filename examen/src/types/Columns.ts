@@ -7,3 +7,12 @@ export type CreateColumnData = {
   datatype: string;
   primaryKey: boolean;
 };
+
+export type GetColumnData = {
+  Extra: string;
+  Key: string;
+  Type: string;
+  Field: string;
+  Null: string;
+  Default: string | null;
+};

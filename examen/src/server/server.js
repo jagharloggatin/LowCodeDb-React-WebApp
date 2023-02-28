@@ -100,3 +100,17 @@ app.get("/getTables/:databaseName", (req, res) => {
         return res.send(JSON.stringify(result))
     })
 })
+
+app.get("/getColumns/:databaseName/:tableName", (req, res) => {
+    let useQuery = `USE ${req.params.databaseName}`;
+    let showQuery = `SHOW COLUMNS FROM ${req.params.tableName}`;
+
+    connection.query(useQuery, (err) => {
+        if (err) console.log(err)
+    })
+
+    connection.query(showQuery, (err, result, fields) => {
+        if (err) console.log(err)
+        return res.send(JSON.stringify(result))
+    })
+})
