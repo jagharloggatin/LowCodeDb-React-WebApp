@@ -21,8 +21,6 @@ export default function ColumnComponent(props: columnProps) {
     console.log(showModal);
   };
 
-  //useEffect here
-  //fix for back button because routes dont work without parameters
   useEffect(() => {
     if(columns) addColumns([...columns])
   }, [columns])

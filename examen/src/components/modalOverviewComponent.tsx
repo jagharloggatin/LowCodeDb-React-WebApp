@@ -33,6 +33,11 @@ export default function ModalComponent(props: modalProps) {
       .replace(/(\s|-|_|~)+/g, "_")
       .toLowerCase();
 
+    if(parseInt(data.name)){
+        alert("No numbers allowed!")
+        return;
+    }
+
     const dbOrTableNames: string[] = [];
     rows.map((row: TableData) => {
         dbOrTableNames.push(Object.values(row)[0]);
