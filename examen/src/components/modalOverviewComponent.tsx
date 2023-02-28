@@ -53,7 +53,7 @@ export default function ModalComponent(props: modalProps) {
       await createDataHandler(trimName, params.databaseName);
       const fetchedData = await getDataHandler(params.databaseName as string)
       addRows([...fetchedData] as TableData[]);
-      alert(`${data.name} added in list!`)
+      alert(`${trimName} added in list!`)
     }
     else {
       alert("Your database name needs at least one character!");

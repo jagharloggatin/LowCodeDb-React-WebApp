@@ -37,6 +37,13 @@ export default function ModalColumnComponent(props: modalColumnProps) {
       alert("please select a datatype!");
       return;
     }
+    const trimName: string = data.name
+      .trim()
+      .replace(";","semicolon")
+      .replace(" ", "_")
+      .replace(/(\s|-|_|~)+/g, "_")
+      .toLowerCase();
+
     const columnNames: string[] = [];
     columns.map((column: Columns) => {
       columnNames.push(Object.values(column)[0]);
@@ -51,6 +58,8 @@ export default function ModalColumnComponent(props: modalColumnProps) {
       alert("Column name taken!");
       return;
     }
+
+    data.name = trimName;
 
     await createColumn(
       params.tableName as string,
