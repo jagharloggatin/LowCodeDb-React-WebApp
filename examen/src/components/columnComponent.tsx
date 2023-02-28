@@ -28,7 +28,7 @@ export default function ColumnComponent(props: columnProps) {
   return (
     <Card style = {{width: '70%', margin: 'auto'}}>
       <Card.Header>
-        <h1 style = {{margin: 'auto'}}>{tableName}</h1>
+        <h1 style = {{margin: 'auto', width:"fit-content"}}>{tableName}</h1>
         <Link to={"/tables/" + databaseName}>
           <Button variant = 'danger' className="backButton">Back</Button>
         </Link>
@@ -39,10 +39,10 @@ export default function ColumnComponent(props: columnProps) {
           <Button variant = 'warning' className="backToMain">Back to main</Button>
         </Link>
       </Card.Header>
-      <Card.Body>
-        <Table striped bordered hover>
+      <Card.Body style={{overflowX: "scroll"}}>
+        <Table striped bordered hover >
           <tbody>
-            <tr>
+            <tr >
               {newColumns.map((data) => {
                 return <th>{data.columnName}</th>;
               })}
