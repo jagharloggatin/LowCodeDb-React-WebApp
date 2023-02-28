@@ -116,8 +116,6 @@ app.get("/getColumns/:databaseName/:tableName", (req, res) => {
 })
 
 app.post("/createColumn", (req, res) => {
-    console.log("body: " + req.body.tableName);
-    //Maybe do an if() case for req.body.columnData.primaryKey
     
     let createQuery = `ALTER TABLE ${req.body.tableName} ADD COLUMN ${req.body.columnData.name} ${req.body.columnData.datatype};`;
     let useQuery = `USE ${req.body.databaseName}`;
@@ -133,17 +131,17 @@ app.post("/createColumn", (req, res) => {
             })
 
             if(req.body.columnData.primaryKey){
-                const findPrimaryKey = `SHOW KEYS FROM ${req.body.tableName} WHERE Key_name = 'PRIMARY'`
+                const findPrimaryKey = `SHOW KEYS FROM ${req.body.tableName} WHERE Key_name = 'PRIMARY';`
                 connection.query(findPrimaryKey, (err, result, fields) => {
                     if(err) {console.log(err)}
-                    console.log(findPrimaryKey)
-                    console.log("result: " + result)
-                    
-                    const dropPrimaryKey = `ALTER TABLE ${req.body.tableName} DROP CONSTRAINT PK_${result[0].Column_name}`
-                    connection.query(dropPrimaryKey, (err) => {
-                        if(err) console.log(err);
-                    })
-    
+
+                    if(result[0]){
+                        const dropPrimaryKey = `ALTER TABLE ${req.body.tableName} DROP PRIMARY KEY;`
+                        connection.query(dropPrimaryKey, (err) => {
+                            if(err) console.log(err);
+                        })
+                    }
+                   
                     const setPrimaryKey = `ALTER TABLE ${req.body.tableName} ADD PRIMARY KEY(${req.body.columnData.name})`
                     connection.query(setPrimaryKey, (err) => {
                         if(err) console.log(err)
