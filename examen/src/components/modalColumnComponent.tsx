@@ -42,6 +42,11 @@ export default function ModalColumnComponent(props: modalColumnProps) {
       columnNames.push(Object.values(column)[0]);
     });
 
+    if(parseInt(data.name)){
+        alert("No numbers allowed!")
+        return;
+    }
+
     if (columnNames.includes(data.name)) {
       alert("Column name taken!");
       return;
