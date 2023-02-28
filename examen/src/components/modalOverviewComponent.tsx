@@ -28,6 +28,7 @@ export default function ModalComponent(props: modalProps) {
     
     const trimName: string = data.name
       .trim()
+      .replace(";","semicolon")
       .replace(" ", "_")
       .replace(/(\s|-|_|~)+/g, "_")
       .toLowerCase();
