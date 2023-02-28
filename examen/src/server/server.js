@@ -114,3 +114,25 @@ app.get("/getColumns/:databaseName/:tableName", (req, res) => {
         return res.send(JSON.stringify(result))
     })
 })
+
+app.post("/createColumn", (req, res) => {
+    console.log("body: " + req.body.tableName);
+    let createQuery = `ALTER TABLE ${req.body.tableName} ADD COLUMN ${req.body.columnName} ${req.body.datatype};`;
+    let useQuery = `USE ${req.body.databaseName}`;
+
+    connection.query(useQuery, (error) => {
+        if (error) {
+            console.log(error)
+        }
+        console.log("Using Database");
+
+        connection.query(createQuery, (err) => {
+            if (err) {
+                console.log(err)
+            }
+
+            return res.send(
+                {message: `Created column ${req.body.name} on Table ${req.body.tableName}`});
+        })
+    });
+});

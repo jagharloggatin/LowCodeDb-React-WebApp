@@ -43,7 +43,17 @@ export default function ModalColumnComponent(props : modalColumnProps){
                             <Form.Control placeholder="Name" type = "text" {...register("name")}/>
                         </FloatingLabel>
                         <FloatingLabel controlId="floatingInput" label = "Datatype" className="mb-3">
-                            <Form.Control placeholder="Datatype" type = "text" {...register("datatype")}/>
+                            <Form.Select  {...register("datatype")}>
+                                <option>select...</option>
+                                <option value="VARCHAR(255)">Varchar (255)</option>
+                                <option value="VARCHAR(100)">Varchar (100)</option>
+                                <option value="VARCHAR(50)">Varchar (50)</option>
+                                <option value="BOOLEAN">Boolean</option>
+                                <option value="FLOAT">Float</option>
+                                <option value="INT">Integer</option>
+                                <option value="DATETIME">Date Time</option>
+                                <option value="DATETIME DEFAULT CURRENT_TIMESTAMP">Date Time default to current time</option>
+                            </Form.Select>
                         </FloatingLabel>
                         <Form.Group className="mb-3">
                             <Form.Check type = "checkbox">
