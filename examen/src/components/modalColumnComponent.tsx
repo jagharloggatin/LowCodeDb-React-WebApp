@@ -27,8 +27,14 @@ export default function ModalColumnComponent(props : modalColumnProps){
 
     const onSubmit: SubmitHandler<CreateColumnData> = async (data) => {
        console.log(data)
+       console.log(data.datatype)
+        if(data.datatype === "select..."){
+            alert("please select a datatype!")
+            return
+        }
         await createColumn(params.tableName as string, params.databaseName as string, data)
-       addColumn([{columnName: data.name}, ...columns])
+        addColumn([{columnName: data.name}, ...columns])
+ 
        setShowModal(false)
     };
 
