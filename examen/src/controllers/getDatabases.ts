@@ -1,6 +1,10 @@
 import { DatabaseObject } from "../types/DatabaseObject";
 import { TableData } from "../types/TableData";
 
+/**
+ * function to get all databases on current connection
+ * @returns Promise<TableData[] | undefined>
+ */
 export async function getDatabases() {
   const response = await fetch("http://localhost:3001/getDatabases", {
     method: "GET",

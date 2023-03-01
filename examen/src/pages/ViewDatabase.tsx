@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Overview, { overviewProps } from "../components/overview";
 import { createDatabases } from "../controllers/createDatabase";
 import { getDatabases } from "../controllers/getDatabases";
-import { DatabaseObject } from "../types/DatabaseObject";
 import { TableData } from "../types/TableData";
 
+//properties for ViewDatabase
 const tableProps : overviewProps = {
     buttonName: 'Database',
     tableData: [{name : 'test'},{name: 'test1'}],
@@ -13,6 +13,10 @@ const tableProps : overviewProps = {
     getDataHandler: getDatabases
 };
 
+/**
+ * Page to get and show all databases.
+ * @returns Overview
+ */
 export default function ViewDatabase(){
     const [tableDataTest, setTableDataTest] = useState<TableData[]>([]);
 

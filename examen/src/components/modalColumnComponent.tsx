@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { createColumn } from "../controllers/createColumn";
 import { getColumns } from "../controllers/getColumns";
 
+/**These are the properties for the ModalColumnComponent */
 export type modalColumnProps = {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,24 +16,26 @@ export type modalColumnProps = {
   columns: Columns[];
 };
 
+/** The ModalColumnComponent is a form that is linked directly to our database. 
+ * It's purpose is to create a new column on the specified table in the specified database.
+ * It takes modalColumnProps as properties. */
 export default function ModalColumnComponent(props: modalColumnProps) {
+
+  // we deconstruct our properties and use useForm to register our data in an object
   const { showModal, setShowModal, addColumn, columns } = props;
-  const [message, setMessage] = useState("");
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    reset,
   } = useForm<CreateColumnData>();
+
+  // we use useParams to retrieve the parameters from the url (databaseName and tableName)
   const params = useParams();
 
-  const handleChange = (event: any) => {
-    setMessage(event.target.value);
-  };
-
+  // The onSubmit handler is used to submit data from the form to our database (row 67). 
+  // It also updates the rows on the ColumnComponent in row 74.
+  // We run serveral checks on the data to secure our processes and to detect duplicate entries.
   const onSubmit: SubmitHandler<CreateColumnData> = async (data) => {
-    console.log(data);
-    console.log(data.datatype);
+
     if (data.datatype === "select...") {
       alert("please select a datatype!");
       return;
@@ -73,7 +76,9 @@ export default function ModalColumnComponent(props: modalColumnProps) {
     setShowModal(false);
   };
 
-  return (
+  // These are all bootstrap tags with the onSubmit handler on row 88.
+  // on the rows 97, 105 and 121 we register our data with help of the useForm hook
+ return (
     <div>
       <Modal show={showModal}>
         <Modal.Header>

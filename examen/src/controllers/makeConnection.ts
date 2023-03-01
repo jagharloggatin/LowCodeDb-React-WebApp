@@ -1,3 +1,6 @@
+/**
+ * function to initialize and test the connection to our database
+ */
 export async function makeConnection() {
   const response = await fetch("http://localhost:3001/getConnection", {
     method: "GET",

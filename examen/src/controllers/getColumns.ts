@@ -1,7 +1,11 @@
 import { Columns, GetColumnData } from "../types/Columns";
-import { TableData } from "../types/TableData";
-import { TableObject } from "../types/TableObject";
 
+/**
+ * function to get all columns from a specific table
+ * @param databaseName specify the database
+ * @param tableName specify the table
+ * @returns Columns[]
+ */
 export async function getColumns(databaseName: string, tableName: string) {
   const response = await fetch(
     "http://localhost:3001/getColumns/" + databaseName + "/" + tableName,

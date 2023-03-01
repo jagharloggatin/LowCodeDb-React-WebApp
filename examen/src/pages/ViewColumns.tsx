@@ -4,7 +4,10 @@ import ColumnComponent from "../components/columnComponent";
 import { getColumns } from "../controllers/getColumns";
 import { Columns } from "../types/Columns";
 
-
+/**
+ * Page to get and to show all columns on a specific table.
+ * @returns ColumnComponent
+ */
 export default function ViewColumns(){
     const params = useParams();
     const [columnData, setColumnData] = useState<Columns[]>([]);
