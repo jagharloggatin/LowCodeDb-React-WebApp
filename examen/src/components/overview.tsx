@@ -40,18 +40,18 @@ export default function Overview(props: overviewProps) {
     if(tableData) addRows([...tableData])
   }, [tableData])
 
-  // clickHandler to make a connection to our database and to show our modal
+  /** clickHandler to make a connection to our database and to show our modal */
    const clickHandler = async() => {
     await makeConnection()
     setShowModal(true);
    };
 
-   // clickHandler to navigate to ViewTables
+   /** clickHandler to navigate to ViewTables */
    const openTableView = (database: string) => {
       navigate(`/tables/${database}`)
    }
 
-   // clickHandler to navigate to ViewColumns
+   /** clickHandler to navigate to ViewColumns */
    const openColumnView = (database: string, table: string) => {
       console.log(database, table)
       navigate(`/columns/${database}/${table}`)

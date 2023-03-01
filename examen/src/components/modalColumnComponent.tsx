@@ -21,14 +21,14 @@ export type modalColumnProps = {
  * It takes modalColumnProps as properties. */
 export default function ModalColumnComponent(props: modalColumnProps) {
 
-  // we deconstruct our properties and use useForm to register our data in an object
+  // we deconstruct our properties and use the useForm hook to register our data in an object
   const { showModal, setShowModal, addColumn, columns } = props;
   const {
     register,
     handleSubmit,
   } = useForm<CreateColumnData>();
 
-  // we use useParams to retrieve the parameters from the url (databaseName and tableName)
+  // we use the useParams hook to retrieve the parameters from the url (databaseName and tableName)
   const params = useParams();
 
   // The onSubmit handler is used to submit data from the form to our database (row 67). 
